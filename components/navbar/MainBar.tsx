@@ -21,11 +21,6 @@ type NavItemProps = {
   className?: string;
 };
 
-type UserData = {
-  Name: string;
-} | null;
-
-
 function NavItem({ icon, text, href, onClick, active, className }: NavItemProps) {
   const base = clsx(
     "flex items-center gap-2 px-3 py-2 rounded-md transition text-sm font-medium",
@@ -117,7 +112,7 @@ function NavDropdown({
 
 // --- Main Component ---
 
-const Navbar = ({ user }: { user: UserData }) => {
+const Navbar = () => {
   
   const router = useRouter();
   const pathname = usePathname();
@@ -215,10 +210,11 @@ const Navbar = ({ user }: { user: UserData }) => {
               className="text-gray-500"
             />
             <NavItem
-              text={user?.Name || ""}
+              text=""
+              icon={<FaUser />} 
               href="/profile"
               active={pathname?.startsWith("/profile")}
-              className="text-gray-500 w-40"
+              className="text-gray-500"
             />
             <div className="h-6 w-px bg-gray-200 mx-2" />
             <button
