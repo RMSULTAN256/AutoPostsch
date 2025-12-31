@@ -1,6 +1,7 @@
 ## SaaSify
 
 SaaSify is a SaaS landing page template built with Next.js and Tailwind CSS.
+Inspiration only
 
 ## Requirements
 
@@ -60,3 +61,5 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Deploy
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+
+
