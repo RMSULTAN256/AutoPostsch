@@ -6,14 +6,11 @@ import { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
 import { Toaster } from 'sonner';
-import { RequireUser } from "@/lib/auth-ser";
-import MainBar from '@/components/navbar/MainBar';
 
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 import Background from "@/components/background";
-import { Main } from 'next/document';
 export const metadata: Metadata = {
   title: {
     template: '%s | Metronic SaaS',
@@ -26,7 +23,6 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  const user = await RequireUser();
   return (
     <html className="h-full" suppressHydrationWarning>
       <body
@@ -35,7 +31,6 @@ export default async function RootLayout({
           inter.className,
         )}
       >
-        <MainBar user={user} />
         <Background />
         <ThemeProvider
           attribute="class"

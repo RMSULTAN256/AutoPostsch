@@ -6,10 +6,9 @@ import { useEffect, useState, useRef } from "react";
 import clsx from "clsx";
 
 import { FaUser } from "react-icons/fa";
-import { TbReportAnalytics } from "react-icons/tb";
+import { MdSchedule, MdPublish, MdAutoMode } from "react-icons/md";
 import { FaTableList, FaBars } from "react-icons/fa6";
 import { IoIosSettings, IoIosLogOut } from "react-icons/io";
-import { AiOutlineScan } from "react-icons/ai";
 import { IoChevronDown } from "react-icons/io5";
 
 type NavItemProps = {
@@ -117,7 +116,7 @@ function NavDropdown({
 
 // --- Main Component ---
 
-const Navbar = ({ user }: { user: UserData }) => {
+const Navbar = () => {
   
   const router = useRouter();
   const pathname = usePathname();
@@ -154,57 +153,57 @@ const Navbar = ({ user }: { user: UserData }) => {
       <header className="fixed top-0 inset-x-0 z-40 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           
-          <div className="flex shrink-0 items-center">
+          <div className="flex shrink-0 items-center gap-2">
              <span className="font-bold text-xl text-gray-900 tracking-tight">PostSch</span>
           </div>
-
+            <div className="h-10 w-px bg-gray-200 mx-2" />
           <nav className="hidden lg:flex items-center gap-1">
-            <NavItem
-              icon={<AiOutlineScan />}
+           <NavDropdown
+              icon={<MdPublish />}
               text="Publish"
-              href="/scan"
-              active={isActive("/scan")}
-            />
-            
-            <NavItem
-              icon={<TbReportAnalytics />}
-              text="Automate"
-              href="/scan/report"
-              active={pathname?.startsWith("/scan/report")}
-            />
-
-            <NavItem
-              icon={<AiOutlineScan />}
-              text="Schedule"
-              href="/scan"
-              active={isActive("/scan")}
-            />
-            
-            <NavItem
-              icon={<TbReportAnalytics />}
-              text="People"
-              href="/scan/report"
-              active={pathname?.startsWith("/scan/report")}
-            />
-
-            {/* <NavDropdown
-              icon={<FaTableList />}
-              text="DAST"
               active={isToolsActive}
             >
-              <Link
-                href="/scan/list"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg"
-              >
-                All in One
-              </Link>
+        
               <div className="my-1 border-t border-gray-100" />
-              <Link href="/tools/xss" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">XSS</Link>
-              <Link href="/tools/sqlinjection" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">SQL Injection</Link>
-              <Link href="/tools/osinjection" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Shell Injection</Link>
-              <Link href="/tools/ssrf" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">SSRF</Link>
-              <Link href="/tools/idor" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">IDOR</Link>
-            </NavDropdown> */}
+              <Link href="/post/addnewpost" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">New Post</Link>
+              <Link href="/post/queuepost" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Queue Post</Link>
+              <Link href="/post/statuspost" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Status Automation</Link>
+            </NavDropdown>
+
+            <NavDropdown
+              icon={<MdAutoMode />}
+              text="Automate"
+              active={isToolsActive}
+            >
+        
+              <div className="my-1 border-t border-gray-100" />
+              <Link href="/main/bots" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">New Automation</Link>
+              <Link href="/main/bots/command" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Automation</Link>
+              <Link href="/main/bots/statusauto" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Status Automation</Link>
+            </NavDropdown>
+
+            <NavDropdown
+              icon={<MdSchedule />}
+              text="Schedule"
+              active={isToolsActive}
+            >
+        
+              <div className="my-1 border-t border-gray-100" />
+              <Link href="/schedule/queue" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">New Schedule</Link>
+              <Link href="/schedule/calendar" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Automation</Link>
+            </NavDropdown>
+
+            <NavDropdown
+              icon={<MdAutoMode />}
+              text="Team"
+              active={isToolsActive}
+            >
+        
+              <div className="my-1 border-t border-gray-100" />
+              <Link href="/team/add" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Add Team</Link>
+              <Link href="/team/list" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Team List</Link>
+            </NavDropdown>
+           
           </nav>
           <div className="hidden lg:flex items-center gap-1">
             <NavItem
@@ -215,15 +214,16 @@ const Navbar = ({ user }: { user: UserData }) => {
               className="text-gray-500"
             />
             <NavItem
-              text={user?.Name || ""}
+              text=""
+              icon={<FaUser />}
               href="/profile"
               active={pathname?.startsWith("/profile")}
-              className="text-gray-500 w-40"
+              className="text-gray-500"
             />
-            <div className="h-6 w-px bg-gray-200 mx-2" />
+            <div className="h-10 w-px bg-gray-200 mx-2" />
             <button
               onClick={handleLogout}
-              className="text-sm font-medium text-red-600 hover:text-red-700 px-3 py-2 rounded-md hover:bg-red-50 transition"
+              className="text-sm font-medium text-red-600 hover:text-red-700 px-3 py-2 rounded-md hover:bg-red-50 transition cursor-pointer"
             >
               Logout
             </button>
@@ -289,39 +289,6 @@ const Navbar = ({ user }: { user: UserData }) => {
           >
             Domain Scan
           </Link>
-
-          <div className="py-2">
-            <button
-              onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
-              className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-            >
-              Tools (DAST)
-              <IoChevronDown className={clsx("size-4 transition", mobileToolsOpen && "rotate-180")} />
-            </button>
-            <div className={clsx("mt-1 space-y-1 pl-6 overflow-hidden transition-all", mobileToolsOpen ? "max-h-96" : "max-h-0")}>
-               {[
-                 { href: "/scan/list", label: "All in One" },
-                 { href: "/tools/xss", label: "XSS" },
-                 { href: "/tools/sqlinjection", label: "SQL Injection" },
-                 { href: "/tools/osinjection", label: "Shell Injection" },
-                 { href: "/tools/ssrf", label: "SSRF" },
-                 { href: "/tools/idor", label: "IDOR" },
-                 { href: "/tools/subfinder", label: "Subfinder" },
-               ].map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={clsx(
-                      "block rounded-lg px-3 py-2 text-sm font-medium",
-                      pathname?.startsWith(item.href) ? "text-blue-600 bg-blue-50" : "text-gray-600 hover:bg-gray-50"
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-               ))}
-            </div>
-          </div>
 
           <div className="my-4 border-t border-gray-100" />
 
