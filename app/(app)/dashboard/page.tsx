@@ -1,4 +1,4 @@
-import { RequireUser } from "@/lib/auth-ser";
+import { RequireUser} from "@/lib/auth-ser";
 import { redirect } from "next/navigation";
 import MainBar from '@/components/navbar/MainBar';
 

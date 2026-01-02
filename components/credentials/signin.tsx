@@ -50,8 +50,6 @@ const signin = () => {
             console.log("Login error:", error);
         } finally {
             setLoading(false);
-            setEmail("");
-            setPassword("");
         }
     }
     return (
@@ -65,7 +63,8 @@ const signin = () => {
                         className="flex flex-col gap-4">
                         <input 
                         type="text" 
-                        placeholder="Email" 
+                        placeholder="Email"
+                        autoComplete="true" 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         maxLength={32}

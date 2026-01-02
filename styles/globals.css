@@ -334,6 +334,8 @@ html {
     @apply absolute w-auto p-2 m-2 min-w-max left-15 text-white text-xs font-bold transition-all duration-300 ease-linear;
   }
 
+  
+
 }
 
 
@@ -364,6 +366,8 @@ html {
     /* Show spinner only when loading */
     .btn-primary .spinner { display: none; }
     .btn-primary[data-loading="true"] .spinner { display: inline-block; }
+
+    
 }
 
 
