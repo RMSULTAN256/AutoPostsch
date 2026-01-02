@@ -7,7 +7,6 @@ import { ThemeProvider } from 'next-themes';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
 import { Toaster } from 'sonner';
 
-
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 import Background from "@/components/background";

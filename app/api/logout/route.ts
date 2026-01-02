@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const url = new URL("/sign/in?post_logout=true", req.url);
-  
-  const response = NextResponse.redirect(url);
+  const response = NextResponse.redirect(new URL("/sign/in", req.url));
 
   response.cookies.delete("access_token");
   response.cookies.delete("refresh_token");
@@ -14,7 +12,7 @@ export async function GET(req: NextRequest) {
      fetch(`${API}/api/auth/logout`, { 
         method: "GET",
         headers: { cookie: req.headers.get("cookie") || "" }
-     }).catch(() => {}); 
+     }).catch((err) => console.log("Logout backend silent fail:", err));
   } catch {}
 
   return response;

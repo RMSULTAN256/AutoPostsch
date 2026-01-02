@@ -20,11 +20,6 @@ type NavItemProps = {
   className?: string;
 };
 
-type UserData = {
-  Name: string;
-} | null;
-
-
 function NavItem({ icon, text, href, onClick, active, className }: NavItemProps) {
   const base = clsx(
     "flex items-center gap-2 px-3 py-2 rounded-md transition text-sm font-medium",
@@ -215,7 +210,7 @@ const Navbar = () => {
             />
             <NavItem
               text=""
-              icon={<FaUser />}
+              icon={<FaUser />} 
               href="/profile"
               active={pathname?.startsWith("/profile")}
               className="text-gray-500"
